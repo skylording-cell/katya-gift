@@ -1,151 +1,76 @@
 <!doctype html>
 <html lang="ru">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Для Кати ❤️</title>
-<style>
-*{box-sizing:border-box}
-html,body{margin:0;min-height:100%;font-family:Georgia,"Times New Roman",serif}
-body{background:#fff7fa;color:#63394d;overflow:hidden}
-button{font:inherit}
-.screen{
-  position:fixed;inset:0;display:flex;align-items:center;justify-content:center;
-  padding:28px 20px;opacity:0;visibility:hidden;pointer-events:none;
-  transition:opacity 1.1s ease, visibility 1.1s ease;
-}
-.screen.active{opacity:1;visibility:visible;pointer-events:auto}
-.inner{width:min(760px,100%);text-align:center}
-.intro{background:radial-gradient(circle at 50% 35%,#fff,#fff3f7 65%,#f7e3eb)}
-.kicker{font:600 14px/1.4 Arial,sans-serif;letter-spacing:.28em;text-transform:uppercase;color:#b27791;margin-bottom:22px}
-h1{font-size:clamp(48px,13vw,92px);line-height:.95;margin:0 0 24px;font-weight:500;color:#7b3e59}
-.subtitle{font-size:clamp(24px,6vw,42px);line-height:1.2;margin:0 auto 38px}
-.subtitle b{font-weight:700}
-.cta{
- border:0;border-radius:999px;background:#b85c82;color:white;padding:16px 34px;
- font:700 17px Arial,sans-serif;box-shadow:0 12px 30px #b85c8238;cursor:pointer;
- transition:transform .25s ease,box-shadow .25s ease
-}
-.cta:active{transform:scale(.97)}
-.heart{position:absolute;inset:auto 0 8%;font-size:26px;opacity:.35;animation:float 4s ease-in-out infinite}
-@keyframes float{50%{transform:translateY(-12px)}}
-.story{overflow:auto;background:linear-gradient(#fff8fb,#fff0f5);padding-top:48px;padding-bottom:48px}
-.card{background:#fff;border-radius:30px;padding:18px;box-shadow:0 18px 60px #7b3e591c}
-.photo{
- width:100%;height:min(58vh,620px);object-fit:cover;border-radius:22px;
- opacity:0;transform:translateY(30px) scale(.97);transition:1.2s ease .15s
-}
-.active .photo{opacity:1;transform:none}
-.text{
- margin:24px auto 0;max-width:650px;font-size:clamp(25px,6vw,38px);line-height:1.35;
- opacity:0;transform:translateY(24px);transition:1.1s ease .55s
-}
-.active .text{opacity:1;transform:none}
-.next{margin-top:24px}
-.letter{background:linear-gradient(145deg,#fffafd,#fdebf2)}
-.letterbox{
- background:#fffdfb;max-width:650px;margin:auto;padding:clamp(28px,7vw,55px);
- border-radius:8px;box-shadow:0 20px 70px #63394d18;position:relative;
- opacity:0;transform:translateY(35px);transition:1.2s ease .15s
-}
-.active .letterbox{opacity:1;transform:none}
-.letterbox:before{
- content:"";position:absolute;inset:12px;border:1px solid #ead1dc;pointer-events:none
-}
-.lettertitle{font-size:14px;letter-spacing:.2em;text-transform:uppercase;color:#b27791;margin-bottom:26px}
-.lettertext{font-size:clamp(28px,7vw,48px);line-height:1.25;color:#6e3851}
-.final{background:radial-gradient(circle at center,#fff,#fdeaf2 75%)}
-.final h2{
- font-size:clamp(52px,14vw,105px);line-height:1.03;margin:0;color:#7b3e59;font-weight:500;
- opacity:0;transform:scale(.9);transition:1.5s cubic-bezier(.2,.8,.2,1) .2s
-}
-.active h2{opacity:1;transform:scale(1)}
-.final p{font:500 16px/1.5 Arial,sans-serif;color:#a46a84;margin-top:24px;opacity:0;transition:1s ease 1s}
-.active.final p{opacity:1}
-.final .big-heart{font-size:50px;margin-bottom:18px;opacity:0;transform:translateY(15px);transition:1s ease .7s}
-.active .big-heart{opacity:1;transform:none}
-.music-note{position:fixed;right:16px;top:16px;z-index:20;border:0;background:#fff;color:#8b4c68;border-radius:999px;width:44px;height:44px;box-shadow:0 6px 20px #63394d20;cursor:pointer}
-.progress{position:fixed;left:0;bottom:0;height:3px;background:#b85c82;width:0;z-index:30;transition:width .4s ease}
-@media (min-width:700px){.story .inner{width:min(850px,100%)}}
-</style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#160d1b">
+  <title>Для Кати ❤️</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <div id="loader" class="loader"><div class="loader-heart">♥</div><p>Для тебя...</p></div>
 
-<audio id="music" loop preload="auto">
-  <source src="In Da Party.mp3" type="audio/mpeg">
-</audio>
-<button class="music-note" id="musicBtn" aria-label="Музыка">♫</button>
-<div class="progress" id="progress"></div>
+  <main>
+    <section class="hero reveal">
+      <div class="petals"></div>
+      <div class="hero-copy">
+        <span class="eyebrow">МАЛЕНЬКИЙ ПОДАРОК</span>
+        <h1>Катя</h1>
+        <p>У меня для тебя кое-что есть...</p>
+        <button class="open-btn" data-scroll="#letter">Открыть послание ↓</button>
+      </div>
+      <div class="hero-photo frame">
+        <img src="assets/katya-hero.jpg" alt="Катя">
+      </div>
+      <div class="music-pill">
+        <button id="play" aria-label="Включить музыку">▶</button>
+        <span>smokedope2016 — In Da Party</span>
+        <audio id="audio" preload="none" src="assets/music.mp3"></audio>
+      </div>
+    </section>
 
-<section class="screen intro active" id="s1">
-  <div class="inner">
-    <div class="kicker">Маленький сюрприз</div>
-    <h1>Катя</h1>
-    <p class="subtitle">У меня для тебя<br><b>кое-что есть...</b> ❤️</p>
-    <button class="cta" data-next="s2">Открыть →</button>
-  </div>
-  <div class="heart">♡</div>
-</section>
+    <section id="letter" class="letter-section reveal">
+      <article class="letter">
+        <span class="small-title">МОЁ ПИСЬМО ТЕБЕ ♥</span>
+        <h2>Всё связанное с любовью в этом мире — это ты.</h2>
+        <p>Катя, ты — самое прекрасное, что случилось со мной. Ты делаешь каждый день особенным, даже если он самый обычный.</p>
+        <p>С тобой я чувствую себя по-настоящему живым, спокойным и счастливым.</p>
+        <p>Спасибо тебе за твою улыбку, твою доброту, твою поддержку и за то, что ты просто есть.</p>
+        <p class="signature">Твой человек ♥</p>
+      </article>
+      <div class="gallery">
+        <div class="frame"><img src="assets/katya-2.jpg" alt="Наш момент"></div>
+        <div class="frame"><img src="assets/katya-3.jpg" alt="Катя"></div>
+        <div class="frame"><img src="assets/katya-4.jpg" alt="Наше фото"></div>
+      </div>
+    </section>
 
-<section class="screen story" id="s2">
-  <div class="inner">
-    <div class="card">
-      <img class="photo" src="photo1.jpg" alt="Наше фото">
-      <p class="text">Иногда хочется просто остановить время<br>и сохранить самые тёплые моменты рядом с тобой.</p>
-      <button class="cta next" data-next="s3">Дальше →</button>
-    </div>
-  </div>
-</section>
+    <section class="story reveal">
+      <div>
+        <span class="small-title">НАША ИСТОРИЯ ♥</span>
+        <h2>Самые простые моменты становятся особенными.</h2>
+        <div class="timeline">
+          <div><b>Наше знакомство</b><span>С первого взгляда я понял, что ты особенная.</span></div>
+          <div><b>Наши разговоры</b><span>С тобой легко, интересно и спокойно.</span></div>
+          <div><b>Наши моменты</b><span>Каждый день с тобой — маленькое счастье.</span></div>
+          <div><b>И дальше...</b><span>Впереди ещё столько красивых глав. Вместе.</span></div>
+        </div>
+      </div>
+      <div class="quote">
+        <p>«Всё связанное с любовью в этом мире — это ты.»</p>
+        <span>Ты — моё самое большое счастье.</span>
+      </div>
+    </section>
 
-<section class="screen story" id="s3">
-  <div class="inner">
-    <div class="card">
-      <img class="photo" src="photo2.jpg" alt="Фото">
-      <p class="text">И вот что я хочу сказать тебе от всего сердца...</p>
-      <button class="cta next" data-next="s4">Открыть письмо →</button>
-    </div>
-  </div>
-</section>
+    <section class="final reveal">
+      <div class="final-glow"></div>
+      <span class="eyebrow">И ЕСЛИ СКАЗАТЬ ВСЁ ОДНИМ ПРЕДЛОЖЕНИЕМ...</span>
+      <h2>Люблю тебя<br><em>Катюша</em> ♥</h2>
+      <p>Ты — моё сегодня, моё завтра и навсегда.</p>
+      <button class="open-btn" data-scroll="#letter">Перечитать письмо ↑</button>
+    </section>
+  </main>
 
-<section class="screen letter" id="s4">
-  <div class="inner">
-    <div class="letterbox">
-      <div class="lettertitle">Письмо от меня</div>
-      <div class="lettertext">Всё связанное с любовью в этом мире — это ты.</div>
-      <button class="cta next" data-next="s5">Ещё кое-что ❤️</button>
-    </div>
-  </div>
-</section>
-
-<section class="screen final" id="s5">
-  <div class="inner">
-    <div class="big-heart">❤️</div>
-    <h2>Люблю тебя<br>Катюша</h2>
-    <p>И это самое главное, что я хотел тебе сказать.</p>
-  </div>
-</section>
-
-<script>
-const screens=[...document.querySelectorAll('.screen')];
-const progress=document.getElementById('progress');
-const music=document.getElementById('music');
-const musicBtn=document.getElementById('musicBtn');
-
-function show(id){
-  screens.forEach(s=>s.classList.toggle('active',s.id===id));
-  const n=screens.findIndex(s=>s.id===id);
-  progress.style.width=((n)/(screens.length-1)*100)+'%';
-  window.scrollTo(0,0);
-  // Browsers usually allow audio after this user interaction.
-  music.play().then(()=>musicBtn.textContent='🔊').catch(()=>{});
-}
-document.querySelectorAll('[data-next]').forEach(b=>{
-  b.addEventListener('click',()=>show(b.dataset.next));
-});
-musicBtn.addEventListener('click',()=>{
-  if(music.paused){music.play().then(()=>musicBtn.textContent='🔊').catch(()=>{});}
-  else{music.pause();musicBtn.textContent='♫';}
-});
-</script>
+  <script src="script.js"></script>
 </body>
 </html>
